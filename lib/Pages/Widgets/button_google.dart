@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:langkara/const/colors.dart';
 
-class primaryButton extends StatelessWidget {
+class googleButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color foregroundColor;
 
-  const primaryButton({
+  const googleButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -19,29 +21,36 @@ class primaryButton extends StatelessWidget {
       width: 366,
       height: 50,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFF1A2A4F),
-            Color(0xFFF7A5A5),
-          ],
-        ),
+        color: colors.blue,
         borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: Color(0xFF1A2A4F),
+              width: 1
+        ),
       ),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.white,
+          backgroundColor: Colors.white,
+          foregroundColor: colors.blue,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+
+            SizedBox(width: 10,),
+            SvgPicture.asset("assets/googleLogo.svg", width: 20, height: 20,)
+          ],
         ),
       ),
     );
