@@ -23,10 +23,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RegisterSubmited>((event, emit) async {
       emit(AuthLoading());
       try {
-        await repository.register(event.email, event.password);
+        await repository.register(event.email, event.password, event.nama);
         emit(RegisterSuccess());
       } catch (e) {
         emit(RegisterFailure(e.toString()));
+      }
+    });
+
+    on<GoogleSignInRequest>((event, emit) async {
+      emit(AuthLoading());
+      try{
+        await repository.signInWithGoogle();
+        emit(LoginSuccess());
+      }catch(e){
+        print(e);
       }
     });
 

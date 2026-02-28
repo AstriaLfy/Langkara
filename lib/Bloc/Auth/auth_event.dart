@@ -12,8 +12,11 @@ class LoginSubmited extends AuthEvent {
 class RegisterSubmited extends AuthEvent {
   final String email;
   final String password;
-  RegisterSubmited(this.email, this.password);
+  final String nama;
+  RegisterSubmited(this.email, this.password, this.nama);
 }
+
+class GoogleSignInRequest extends AuthEvent{}
 
 class Logout extends AuthEvent {}
 class CekAuth extends AuthEvent{}
