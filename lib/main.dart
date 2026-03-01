@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:langkara/pages/onBoardingPages.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:langkara/pages/on_boarding_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:langkara/Bloc/Auth/auth_bloc.dart';
 import 'package:langkara/Pages/welcome_page.dart';
@@ -30,9 +31,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
       create: (_) => AuthBloc(authRepository),
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: WelcomePage(),
+        theme: ThemeData(
+          useMaterial3: true,
+          textTheme: GoogleFonts.montserratTextTheme(
+            Theme.of(context).textTheme,
+          ),
+        ),
+        home: OnboardingPage(),
       ),
     );
   }

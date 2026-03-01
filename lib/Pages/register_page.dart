@@ -41,7 +41,6 @@ class _registerPageState extends State<registerPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is RegisterSuccess) {
@@ -77,10 +76,10 @@ class _registerPageState extends State<registerPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 60,),
+                  SizedBox(height: 30,),
                   Text(
-                    "Selamat Datang",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                    "Selamat Datang!",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -171,7 +170,7 @@ class _registerPageState extends State<registerPage> {
                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Row(
-                        spacing: 80,
+                        spacing: 30,
                         children: [
                           Row(
                             children: [
@@ -272,9 +271,9 @@ class _registerPageState extends State<registerPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: Text(
-                          "or",
+                          "atau",
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

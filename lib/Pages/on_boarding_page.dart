@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:langkara/Pages/welcome_page.dart';
 
 class DummyPage extends StatelessWidget {
   const DummyPage({super.key});
@@ -263,10 +264,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(15),
                                 onTap: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (_) => DummyPage(),
+                                      builder: (_) => WelcomePage(),
                                     ),
                                   );
                                 },
