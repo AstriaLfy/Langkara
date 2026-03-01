@@ -17,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(LoginSuccess());
       } catch (e) {
         emit(LoginFailure(e.toString()));
+        print(e.toString());
       }
     });
 
@@ -26,6 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await repository.register(event.email, event.password, event.nama);
         emit(RegisterSuccess());
       } catch (e) {
+        print(e.toString());
         emit(RegisterFailure(e.toString()));
       }
     });
@@ -37,6 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(LoginSuccess());
       }catch(e){
         print(e);
+        print(e.toString());
       }
     });
 
