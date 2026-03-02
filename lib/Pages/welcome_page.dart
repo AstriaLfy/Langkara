@@ -27,12 +27,12 @@ class WelcomePage extends StatelessWidget {
                 spacing: 20,
                 children: [
                   Text(
-                    "Selamat Datang di Langkara!",
+                    "Selamat Datang di\nLangkara!",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 28,
                       color: colors.blue,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(

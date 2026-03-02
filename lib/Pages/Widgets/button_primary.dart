@@ -17,7 +17,7 @@ class primaryButton extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       width: 366,
-      height: 50,
+      height: 45,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
