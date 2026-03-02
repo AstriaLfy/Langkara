@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:langkara/Pages/navigation_menu.dart';
 import 'package:langkara/pages/on_boarding_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:langkara/Bloc/Auth/auth_bloc.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: OnboardingPage(),
+        home: NavigationMenu(),
       ),
     );
   }
