@@ -4,18 +4,21 @@ class AuthService {
   final SupabaseClient _client = Supabase.instance.client;
 
   Future<AuthResponse> register({
-    required String email,
-    required String password,
-    required String username,
-  }) async {
-    return await _client.auth.signUp(
-      email: email,
-      password: password,
-      data: {
-        'username': username,
-      }
-    );
-  }
+  required String email,
+  required String password,
+  required String username,
+  String? avatarUrl,
+}) async {
+
+  return await _client.auth.signUp(
+    email: email,
+    password: password,
+    data: {
+      'username': username,
+      'avatar_url': avatarUrl,
+    },
+  );
+}
 
   Future<AuthResponse> login({
     required String email,

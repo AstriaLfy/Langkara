@@ -16,6 +16,7 @@ class WelcomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: SizedBox(
+          
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -20,8 +20,18 @@ final class RegisterFailure extends AuthState{
 }
 
 final class Unauthenticated extends AuthState{}
-final class Authenticated extends AuthState{
+class Authenticated extends AuthState {
   final String username;
   final String gmail;
-  Authenticated(this.username, this.gmail);
+  final String? avatarUrl;
+  final String? jurusan;
+  final String? universitas;
+
+  Authenticated(
+    this.username,
+    this.gmail,
+    this.avatarUrl, {
+    this.jurusan,
+    this.universitas,
+  });
 }

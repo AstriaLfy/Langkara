@@ -128,11 +128,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 color: Color(0xFF1A2A4F),
                                 width: 1,
                               ),
-                              /*gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xFF1A2A4F), Color(0xFFF7A5A5)],
-                        ),*/
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Material(

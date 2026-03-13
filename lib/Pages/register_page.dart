@@ -8,6 +8,132 @@ import 'package:langkara/Pages/Widgets/button_primary.dart';
 import 'package:langkara/Pages/login_page.dart';
 import 'package:langkara/Pages/navigation_menu.dart';
 
+final List<String> avatars = [
+  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar1.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjEucG5nIiwiaWF0IjoxNzczMzcyMDIwLCJleHAiOjE4MDQ5MDgwMjB9.pLdKhxnv0ZhETYCfPXPpP7kX8mc9tMMPdUPOxEWKGOs",
+  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar2.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjIucG5nIiwiaWF0IjoxNzczMzcyMDQ5LCJleHAiOjE4MDQ5MDgwNDl9.7q1pFaBTIf3YIlVdqnAUELjAT5uEx2S6CTGQVx6mo3c",
+  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar3.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjMucG5nIiwiaWF0IjoxNzczMzcyMDY1LCJleHAiOjE4MDQ5MDgwNjV9.I-ggD8WtZj7NFwkQZk6bZtOJ9Clc-H89iac98xv4ups",
+  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar4.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjQucG5nIiwiaWF0IjoxNzczMzcyNjc0LCJleHAiOjE4MDQ5MDg2NzR9.kGTdbLKdkBNS7f4zLmJ4wsX_UW3ktqi07KZDxdyM0sM",
+  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar5.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjUucG5nIiwiaWF0IjoxNzczMzcyMDk1LCJleHAiOjE4MDQ5MDgwOTV9.aKmUoMd5BNICw7HfiT-sEieWaXd2NqBKw397kd86PcU",
+  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar6.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjYucG5nIiwiaWF0IjoxNzczMzcyMTE0LCJleHAiOjE4MDQ5MDgxMTR9.UuUtu4piTN3nuiJHMlGUlc-xlDq_RobB6LOH0rWuNUUg",
+];
+
+Future<String?> showAvatarPicker(BuildContext context) {
+  int selectedIndex = -1;
+
+  return showGeneralDialog<String>(
+    context: context,
+    barrierDismissible: true,
+    barrierLabel: "",
+    barrierColor: Colors.black54,
+    transitionDuration: const Duration(milliseconds: 300),
+
+    pageBuilder: (context, animation, secondaryAnimation) {
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            backgroundColor: const Color(0xffEDEDED),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: avatars.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 14,
+                          crossAxisSpacing: 14,
+                        ),
+                    itemBuilder: (context, index) {
+                      final isSelected = selectedIndex == index;
+
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: isSelected
+                                  ? const Color(0xff1A2A4F)
+                                  : Colors.transparent,
+                              width: 3,
+                            ),
+                          ),
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(avatars[index]),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  SizedBox(
+                    width: 160,
+                    height: 45,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (selectedIndex == -1) return;
+
+                        final selectedAvatar = avatars[selectedIndex];
+
+                        Navigator.pop(context, selectedAvatar);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: const LinearGradient(
+                            colors: [Color(0xff1A2A4F), Color(0xffDD979B)],
+                          ),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Pilih",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    },
+
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+          child: child,
+        ),
+      );
+    },
+  );
+}
+
 class registerPage extends StatefulWidget {
   const registerPage({super.key});
 
@@ -16,6 +142,7 @@ class registerPage extends StatefulWidget {
 }
 
 class _registerPageState extends State<registerPage> {
+  String? selectedAvatar;
   final emailController = TextEditingController();
   final pwController = TextEditingController();
   final confirmPW = TextEditingController();
@@ -76,7 +203,7 @@ class _registerPageState extends State<registerPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 30,),
+                  SizedBox(height: 30),
                   Text(
                     "Selamat Datang!",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
@@ -88,12 +215,61 @@ class _registerPageState extends State<registerPage> {
                   ),
                   const SizedBox(height: 30),
 
-                  CircleAvatar(
-                    radius: 45,
-                    backgroundColor: Colors.grey,
-                  ),
+                  Center(
+                    child: Stack(
+                      children: [
+                        Container(
+                          child: CircleAvatar(
+                            radius: 35,
+                            backgroundImage: selectedAvatar != null
+                                ? NetworkImage(selectedAvatar!)
+                                : null,
+                            child: selectedAvatar == null
+                                ? const Icon(Icons.person, size: 40)
+                                : null,
+                          ),
+                        ),
 
-                  const SizedBox(height: 20),
+                        Positioned(
+                          bottom: 2,
+                          right: 2,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () async {
+                                final avatar = await showAvatarPicker(context);
+
+                                if (avatar != null) {
+                                  setState(() {
+                                    selectedAvatar = avatar;
+                                  });
+                                }
+                              },
+                              customBorder: const CircleBorder(),
+                              child: Ink(
+                                height: 24,
+                                width: 24,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF1A2A4F),
+                                      Color(0xFFDD979B),
+                                    ],
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.add,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
                   NormalField(
                     controller: usnController,
@@ -156,7 +332,9 @@ class _registerPageState extends State<registerPage> {
                             });
                           },
                           icon: Icon(
-                            _showConpw ? Icons.visibility_off : Icons.visibility,
+                            _showConpw
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                         ),
                       ),
@@ -167,7 +345,10 @@ class _registerPageState extends State<registerPage> {
                     children: [
                       const Text(
                         "Gender",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Row(
                         spacing: 30,
@@ -254,6 +435,7 @@ class _registerPageState extends State<registerPage> {
                               emailController.text,
                               pwController.text,
                               usnController.text,
+                              selectedAvatar,
                             ),
                           );
                         }

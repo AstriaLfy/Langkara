@@ -4,6 +4,13 @@ import 'package:langkara/Pages/materiku_page.dart';
 import 'package:langkara/Pages/profile_page.dart';
 import 'package:langkara/Pages/temanku_page.dart';
 import 'package:langkara/Pages/upload_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:langkara/Bloc/reading/reading_bloc.dart';
+import 'package:langkara/Services/reading_service.dart';
+import 'package:langkara/Bloc/profile_tab/profile_materi_bloc.dart';
+import 'package:langkara/Bloc/profile_tab/profile_achievement_bloc.dart';
+import 'package:langkara/Bloc/profile_tab/profile_bookmark_bloc.dart';
+import 'package:langkara/Services/profile_tab_services.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});
@@ -20,7 +27,26 @@ class _NavigationMenuState extends State<NavigationMenu> {
     const MaterikuPage(),
     const UploadPage(),
     const TemankuPage(),
-    const ProfilePage()
+    MultiBlocProvider(
+    providers: [
+
+      BlocProvider(
+        create: (_) => ProfileMateriBloc(ProfileTabService())
+          ..add(LoadProfileMateri()),
+      ),
+
+      BlocProvider(
+        create: (_) => ProfileAchievementBloc(ProfileTabService())
+          ..add(LoadProfileAchievement()),
+      ),
+
+      BlocProvider(
+        create: (_) => ProfileBookmarkBloc(ProfileTabService())
+          ..add(LoadProfileBookmark()),
+      ), 
+    ],
+    child: const ProfilePage(),
+    ),
   ];
 
   @override

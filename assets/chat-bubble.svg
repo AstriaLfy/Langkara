@@ -1,0 +1,33 @@
+<svg width="32" height="32" viewBox="44 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 16C44 7.16344 51.1634 0 60 0C68.8366 0 76 7.16344 76 16C76 24.8366 68.8366 32 60 32H45C44.4477 32 44 31.5523 44 31V16Z" fill="#FAFAFA"></path>
+
+<path d="M66.6667 16.6666C67.0349 16.6666 67.3333 16.3681 67.3333 15.9999C67.3333 15.6317 67.0349 15.3333 66.6667 15.3333C66.2985 15.3333 66 15.6317 66 15.9999C66 16.3681 66.2985 16.6666 66.6667 16.6666Z" fill="#FAFAFA" stroke="url(#paint2_linear_1598_432)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+<path d="M59.9999 16.6666C60.3681 16.6666 60.6666 16.3681 60.6666 15.9999C60.6666 15.6317 60.3681 15.3333 59.9999 15.3333C59.6317 15.3333 59.3333 15.6317 59.3333 15.9999C59.3333 16.3681 59.6317 16.6666 59.9999 16.6666Z" fill="#FAFAFA" stroke="url(#paint3_linear_1598_432)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+<path d="M53.3334 16.6666C53.7016 16.6666 54.0001 16.3681 54.0001 15.9999C54.0001 15.6317 53.7016 15.3333 53.3334 15.3333C52.9652 15.3333 52.6667 15.6317 52.6667 15.9999C52.6667 16.3681 52.9652 16.6666 53.3334 16.6666Z" fill="#FAFAFA" stroke="url(#paint4_linear_1598_432)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+<path d="M60 29.3334C67.3638 29.3334 73.3333 23.3639 73.3333 16.0001C73.3333 8.63628 67.3638 2.66675 60 2.66675C52.6362 2.66675 46.6666 8.63628 46.6666 16.0001C46.6666 18.4287 47.3159 20.7056 48.4504 22.6667L47.3333 28.6667L53.3333 27.5497C55.2944 28.6841 57.5714 29.3334 60 29.3334Z" stroke="url(#paint5_linear_1598_432)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
+
+<defs>
+<linearGradient id="paint2_linear_1598_432" x1="66.6667" y1="15.3333" x2="66.6667" y2="16.6666">
+<stop stop-color="rgba(86,58,58,1)"></stop>
+<stop offset="1" stop-color="rgba(86,58,58,1)"></stop>
+</linearGradient>
+
+<linearGradient id="paint3_linear_1598_432" x1="59.9999" y1="15.3333" x2="59.9999" y2="16.6666">
+<stop stop-color="rgba(86,58,58,1)"></stop>
+<stop offset="1" stop-color="rgba(86,58,58,1)"></stop>
+</linearGradient>
+
+<linearGradient id="paint4_linear_1598_432" x1="53.3334" y1="15.3333" x2="53.3334" y2="16.6666">
+<stop stop-color="rgba(86,58,58,1)"></stop>
+<stop offset="1" stop-color="rgba(86,58,58,1)"></stop>
+</linearGradient>
+
+<linearGradient id="paint5_linear_1598_432" x1="60" y1="2.66675" x2="60" y2="29.3334">
+<stop stop-color="rgba(86,58,58,1)"></stop>
+<stop offset="1" stop-color="rgba(86,58,58,1)"></stop>
+</linearGradient>
+</defs>
+</svg>
