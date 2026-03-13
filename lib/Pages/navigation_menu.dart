@@ -17,8 +17,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const MaterikuPage(),
-    const UploadPage(),
+    const MateriKuPage(),
+    const SizedBox(),
     const TemankuPage(),
     const ProfilePage()
   ];
@@ -37,20 +37,25 @@ class _NavigationMenuState extends State<NavigationMenu> {
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
           onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
+            if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  fullscreenDialog: true,
+                  builder: (context) => const UploadPage(),
+                ),
+              );
+            } else {
+              setState(() {
+                _selectedIndex = index;
+              });
+            }
           },
           selectedItemColor: const Color(0xFF1A2A4F),
           unselectedItemColor: Colors.grey,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          selectedFontSize: 12,
-          unselectedFontSize: 12,
           items: [
             const BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
               label: 'Beranda',
             ),
             const BottomNavigationBarItem(

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:langkara/Repository/auth_repository.dart';
+import 'package:langkara/repository/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

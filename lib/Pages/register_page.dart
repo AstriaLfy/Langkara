@@ -162,48 +162,6 @@ class _registerPageState extends State<registerPage> {
                       ),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Gender",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        spacing: 30,
-                        children: [
-                          Row(
-                            children: [
-                              Radio<String>(
-                                value: "Laki-laki",
-                                groupValue: selectedGender,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedGender = value;
-                                  });
-                                },
-                              ),
-                              const Text("Laki-laki"),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Radio<String>(
-                                value: "Perempuan",
-                                groupValue: selectedGender,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedGender = value;
-                                  });
-                                },
-                              ),
-                              const Text("Perempuan"),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
 
                   primaryButton(
                     text: "Sign up",
@@ -246,6 +204,7 @@ class _registerPageState extends State<registerPage> {
                         if (usnError == null &&
                             emailError == null &&
                             pwError == null &&
+                            conPwError == null &&
                             emailController.text.isNotEmpty &&
                             pwController.text.isNotEmpty) {
                           print("Register Acc");
