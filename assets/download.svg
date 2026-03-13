@@ -1,0 +1,22 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+<linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="19%" stop-color="#1A2A4F"></stop>
+<stop offset="70%" stop-color="#F7A5A5"></stop>
+</linearGradient>
+</defs>
+
+<circle cx="60" cy="60" r="55" fill="url(#bgGrad)" opacity="0.3"></circle>
+
+<!-- ICON CENTERED -->
+<g transform="translate(60 60) scale(1.4) translate(-35 -35)">
+
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+<path d="M34.9999 64.1667C51.1082 64.1667 64.1666 51.1084 64.1666 35C64.1666 18.8917 51.1082 5.83337 34.9999 5.83337C18.8916 5.83337 5.83325 18.8917 5.83325 35C5.83325 51.1084 18.8916 64.1667 34.9999 64.1667Z" stroke="#FAFAFA" stroke-width="4.92188" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M43.75 24.7916C41.7521 22.7937 38.2336 21.4041 35 21.3171M26.25 43.75C28.1297 46.2563 31.6247 47.6858 35 47.807M35 21.3171C31.1526 21.2135 27.7083 22.9541 27.7083 27.7083C27.7083 36.4583 43.75 32.0833 43.75 40.8333C43.75 45.8238 39.4805 47.968 35 47.807M35 21.3171V16.0416M35 47.807V53.9583" stroke="#FAFAFA" stroke-width="4.92188" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+</g>
+
+</svg>
