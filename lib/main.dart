@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
             textTheme: GoogleFonts.montserratTextTheme(),
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           ),
-          home: isLoggedIn ? NavigationMenu() : const loginPage(),
+          home: isLoggedIn ? NavigationMenu() : const OnboardingPage(),
         ),
       ),
     );
