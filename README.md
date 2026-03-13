@@ -200,4 +200,5 @@ flutter run
 
 ## 👥 Tim Pengembang
 
-Proyek magang **Raion Community 2026**
+Mohammad Rozan Hanan
+Andrew William Smith
