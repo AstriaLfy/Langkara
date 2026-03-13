@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';import 'package:http/http.dart' as http;
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:langkara/Bloc/Auth/auth_bloc.dart';
 import 'package:langkara/Pages/Widgets/text_field.dart';
 import 'package:langkara/Pages/Widgets/button_primary.dart';
@@ -8,6 +9,7 @@ import 'package:langkara/Pages/navigation_menu.dart';
 import 'package:langkara/Pages/register_page.dart';
 import 'package:langkara/Pages/Widgets/button_google.dart';
 import 'package:langkara/const/colors.dart';
+import 'package:langkara/Pages/forgot_password_page.dart';
 
 class loginPage extends StatefulWidget {
   const loginPage({super.key});
@@ -24,14 +26,20 @@ class _loginPageState extends State<loginPage> {
   String? pwError;
   bool RememberCheck = false;
 
-  testing() {
-    print("test");
-    print(emailController.text);
-    print(pwController.text);
+  @override
+  void initState() {
+    super.initState();
+    _loadRememberMe();
+  }
+
+  Future<void> _loadRememberMe() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      RememberCheck = prefs.getBool('remember_me') ?? false;
+    });
   }
 
 
-  @override
   @override
   Widget build(BuildContext context) {
     final loginBloc = context.read<AuthBloc>();
@@ -126,6 +134,7 @@ class _loginPageState extends State<loginPage> {
                       GestureDetector(
                         onTap: () {
                           print("forgot pw test");
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
                         },
                         child: const Text(
                           "Forgot Password",
@@ -153,6 +162,9 @@ class _loginPageState extends State<loginPage> {
                             : null;
               
                         if (emailError == null && pwError == null) {
+                          SharedPreferences.getInstance().then((prefs) {
+                            prefs.setBool('remember_me', RememberCheck);
+                          });
                           loginBloc.add(
                             LoginSubmited(
                               emailController.text,

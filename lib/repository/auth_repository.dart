@@ -1,5 +1,6 @@
 import 'package:langkara/Services/auth_services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 class AuthRepository {
   final AuthService authService;
 

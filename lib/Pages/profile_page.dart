@@ -9,6 +9,7 @@ import 'package:langkara/Bloc/profile_tab/profile_bookmark_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:langkara/Services/profile_services.dart';
 import 'package:langkara/const/colors.dart';
+import 'package:langkara/const/avatars.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 
 
@@ -16,7 +17,7 @@ void showXpDialog(BuildContext context) async {
   final profileService = ProfileService();
 
   final profile = await profileService.getCurrentUserProfile();
-  final int xp = profile['xp'] ?? 0;
+  final int xp = profile['total_xp'] ?? 0;
 
   showDialog(
     context: context,
@@ -124,14 +125,8 @@ void showXpDialog(BuildContext context) async {
   );
 }
 
-final List<String> avatars = [
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar1.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjEucG5nIiwiaWF0IjoxNzczMzcyMDIwLCJleHAiOjE4MDQ5MDgwMjB9.pLdKhxnv0ZhETYCfPXPpP7kX8mc9tMMPdUPOxEWKGOs",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar2.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjIucG5nIiwiaWF0IjoxNzczMzcyMDQ5LCJleHAiOjE4MDQ5MDgwNDl9.7q1pFaBTIf3YIlVdqnAUELjAT5uEx2S6CTGQVx6mo3c",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar3.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjMucG5nIiwiaWF0IjoxNzczMzcyMDY1LCJleHAiOjE4MDQ5MDgwNjV9.I-ggD8WtZj7NFwkQZk6bZtOJ9Clc-H89iac98xv4ups",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar4.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjQucG5nIiwiaWF0IjoxNzczMzcyNjc0LCJleHAiOjE4MDQ5MDg2NzR9.kGTdbLKdkBNS7f4zLmJ4wsX_UW3ktqi07KZDxdyM0sM",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar5.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjUucG5nIiwiaWF0IjoxNzczMzcyMDk1LCJleHAiOjE4MDQ5MDgwOTV9.aKmUoMd5BNICw7HfiT-sEieWaXd2NqBKw397kd86PcU",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar6.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjYucG5nIiwiaWF0IjoxNzczMzcyMTE0LCJleHAiOjE4MDQ5MDgxMTR9.UuUtu4piTN3nuiJHMlGUlc-xlDq_RobB6LOH0rWuNUUg",
-];
+
+final List<String> avatars = avatarList;
 void showAvatarPicker(BuildContext context) {
   int selectedIndex = -1;
   showGeneralDialog(
@@ -606,11 +601,30 @@ void showChangePasswordPopup(BuildContext context) {
                   child: ElevatedButton(
                     onPressed: () async {
                       final newPassword = passwordController.text;
+                      final confirmPassword = confirmController.text;
 
                       if (newPassword.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text("Password tidak boleh kosong"),
+                          ),
+                        );
+                        return;
+                      }
+
+                      if (newPassword.length < 8) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Password minimal 8 karakter"),
+                          ),
+                        );
+                        return;
+                      }
+
+                      if (newPassword != confirmPassword) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Konfirmasi password tidak cocok"),
                           ),
                         );
                         return;

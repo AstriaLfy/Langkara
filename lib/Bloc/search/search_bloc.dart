@@ -12,16 +12,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(SearchLoading());
 
       try {
-        final data = await searchService.getSearchHistory();
-
-        if (data.isEmpty) {
-          emit(SearchEmpty());
-        } else {
-          emit(SearchHistoryLoaded(data));
-        }
+        // Search history feature not yet implemented in SearchService
+        // Emit empty state for now
+        emit(SearchEmpty());
       } catch (e) {
         emit(SearchError(e.toString()));
       }
     });
   }
-}
+}

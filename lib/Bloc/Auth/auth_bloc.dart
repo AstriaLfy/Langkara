@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:langkara/Repository/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:langkara/Services/profile_services.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -71,8 +72,8 @@ on<RegisterSubmited>((event, emit) async {
         await repository.signInWithGoogle();
         emit(LoginSuccess());
       } catch (e) {
-        print(e);
         print(e.toString());
+        emit(LoginFailure(e.toString()));
       }
     });
     on<UpdateProfile>((event, emit) async {

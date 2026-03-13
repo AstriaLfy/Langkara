@@ -12,6 +12,8 @@ import 'package:langkara/Services/inspirasi_service.dart';
 import 'package:langkara/Services/profile_services.dart';
 import 'package:langkara/Services/berita_service.dart';
 import 'package:langkara/utils/date_helper.dart';
+import 'package:langkara/Pages/chat_history_page.dart';
+import 'package:langkara/Pages/search_page.dart';
 
 void showXpDialog(BuildContext context) async {
   final profileService = ProfileService();
@@ -717,7 +719,7 @@ class _HomePageViewState extends State<HomePageView> {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => DummyPage(),
+                                              builder: (context) => const ChatHistoryPage(),
                                             ),
                                           );
                                         },
@@ -758,7 +760,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                     context,
                                                     animation,
                                                     secondaryAnimation,
-                                                  ) => const DummyPage(),
+                                                  ) => const SearchPage(),
                                               transitionsBuilder:
                                                   (
                                                     context,
@@ -832,7 +834,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                   context,
                                                   animation,
                                                   secondaryAnimation,
-                                                ) => const DummyPage(),
+                                                ) => const SearchPage(),
                                             transitionsBuilder:
                                                 (
                                                   context,

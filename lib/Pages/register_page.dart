@@ -8,14 +8,9 @@ import 'package:langkara/Pages/Widgets/button_primary.dart';
 import 'package:langkara/Pages/login_page.dart';
 import 'package:langkara/Pages/navigation_menu.dart';
 
-final List<String> avatars = [
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar1.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjEucG5nIiwiaWF0IjoxNzczMzcyMDIwLCJleHAiOjE4MDQ5MDgwMjB9.pLdKhxnv0ZhETYCfPXPpP7kX8mc9tMMPdUPOxEWKGOs",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar2.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjIucG5nIiwiaWF0IjoxNzczMzcyMDQ5LCJleHAiOjE4MDQ5MDgwNDl9.7q1pFaBTIf3YIlVdqnAUELjAT5uEx2S6CTGQVx6mo3c",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar3.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjMucG5nIiwiaWF0IjoxNzczMzcyMDY1LCJleHAiOjE4MDQ5MDgwNjV9.I-ggD8WtZj7NFwkQZk6bZtOJ9Clc-H89iac98xv4ups",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar4.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjQucG5nIiwiaWF0IjoxNzczMzcyNjc0LCJleHAiOjE4MDQ5MDg2NzR9.kGTdbLKdkBNS7f4zLmJ4wsX_UW3ktqi07KZDxdyM0sM",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar5.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjUucG5nIiwiaWF0IjoxNzczMzcyMDk1LCJleHAiOjE4MDQ5MDgwOTV9.aKmUoMd5BNICw7HfiT-sEieWaXd2NqBKw397kd86PcU",
-  "https://exdtkmfhqtgewykwvgmc.supabase.co/storage/v1/object/sign/avatars/avatar6.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83N2VjZTdjZS1jYjk4LTQwNWItOTFlMi1jYjI0ZmQxOWQ5YWYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdmF0YXJzL2F2YXRhcjYucG5nIiwiaWF0IjoxNzczMzcyMTE0LCJleHAiOjE4MDQ5MDgxMTR9.UuUtu4piTN3nuiJHMlGUlc-xlDq_RobB6LOH0rWuNUUg",
-];
+import 'package:langkara/const/avatars.dart';
+
+final List<String> avatars = avatarList;
 
 Future<String?> showAvatarPicker(BuildContext context) {
   int selectedIndex = -1;
@@ -332,58 +327,11 @@ class _registerPageState extends State<registerPage> {
                             });
                           },
                           icon: Icon(
-                            _showConpw
-                                ? Icons.visibility_off
-                                : Icons.visibility,
+                            _showConpw ? Icons.visibility_off : Icons.visibility,
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Gender",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Row(
-                        spacing: 30,
-                        children: [
-                          Row(
-                            children: [
-                              Radio<String>(
-                                value: "Laki-laki",
-                                groupValue: selectedGender,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedGender = value;
-                                  });
-                                },
-                              ),
-                              const Text("Laki-laki"),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Radio<String>(
-                                value: "Perempuan",
-                                groupValue: selectedGender,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedGender = value;
-                                  });
-                                },
-                              ),
-                              const Text("Perempuan"),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
                   ),
 
                   primaryButton(
@@ -421,12 +369,13 @@ class _registerPageState extends State<registerPage> {
                         } else if (confirmPW.text != pwController.text) {
                           conPwError = "Password do not match";
                         } else {
-                          pwError = null;
+                          conPwError = null;
                         }
 
                         if (usnError == null &&
                             emailError == null &&
                             pwError == null &&
+                            conPwError == null &&
                             emailController.text.isNotEmpty &&
                             pwController.text.isNotEmpty) {
                           print("Register Acc");
@@ -472,7 +421,7 @@ class _registerPageState extends State<registerPage> {
                       print("login google");
                       registerBloc.add(GoogleSignInRequest());
                     },
-                    foregroundColor: Color(0x1A2A4F),
+                    foregroundColor: const Color(0xFF1A2A4F),
                   ),
 
                   Row(
