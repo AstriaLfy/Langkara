@@ -1,4 +1,4 @@
-import 'package:langkara/Services/auth_services.dart';
+import 'package:langkara/services/auth_services.dart';
 
 class AuthRepository {
   final AuthService authService;
