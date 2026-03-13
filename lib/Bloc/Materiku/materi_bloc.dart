@@ -37,6 +37,16 @@ class MateriBloc extends Bloc<MateriEvent, MateriState> {
         emit(MateriError("Upload gagal: ${e.toString()}"));
       }
     });
+
+    on<LoadMateriDetail>((event, emit) async {
+      try {
+        emit(MateriLoading());
+        final materi = await repository.getMateriById(event.id);
+        emit(MateriDetailLoaded(materi));
+      } catch (e) {
+        emit(MateriError(e.toString()));
+      }
+    });
   }
 
   }

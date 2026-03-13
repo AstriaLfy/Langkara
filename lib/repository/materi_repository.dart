@@ -10,6 +10,10 @@ class MateriRepository {
     return materiService.getMateriFeed();
   }
 
+  Future<MateriFeedModel> getMateriById(String id) {
+    return materiService.getMateriById(id);
+  }
+
   Future<void> uploadMateri({
     required String judul,
     required String deskripsi,

@@ -101,7 +101,7 @@ class MateriCard extends StatelessWidget {
                 const SizedBox(height: 2),
 
                 Text(
-                  "${materi.jurusan ?? "-"}, ${materi.universitas ?? "-"}",
+                  "${materi.authorJurusan ?? "-"}, ${materi.authorUniversitas ?? "-"}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(

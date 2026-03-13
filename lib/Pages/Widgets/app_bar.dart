@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:langkara/Pages/search_page.dart';
 
 class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String? title;
+  final bool showSearchBar;
+  final bool showBackButton;
+
+  const MyCustomAppBar({
+    super.key,
+    this.title,
+    this.showSearchBar = true,
+    this.showBackButton = false,
+  });
+
   @override
-  Size get preferredSize => const Size.fromHeight(140.0);
+  Size get preferredSize =>
+      Size.fromHeight(showSearchBar ? 140.0 : 100.0);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -25,36 +38,74 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-
-            Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
+              if (title != null)
+                Row(
+                  children: [
+                    if (showBackButton)
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: const Icon(Icons.arrow_back,
+                            color: Colors.white, size: 24),
+                      ),
+                    if (showBackButton) const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        title!,
+                        textAlign: showBackButton
+                            ? TextAlign.left
+                            : TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
+                    if (showBackButton) const SizedBox(width: 36),
                   ],
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: "Cari materi, catatan...",
-                    hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    border: InputBorder.none,
-                    prefixIcon: SizedBox(width: 20),
-                    suffixIcon: Icon(Icons.search, color: Colors.black54),
+
+              if (title != null && showSearchBar)
+                const SizedBox(height: 12),
+
+              if (showSearchBar)
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const SearchPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                          color: Colors.grey.withValues(alpha: 0.3)),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Cari materi, catatan...",
+                            style: TextStyle(
+                                color: Colors.grey, fontSize: 14),
+                          ),
+                        ),
+                        const Icon(Icons.search,
+                            color: Color(0xFF1A2A4F)),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-
             ],
           ),
         ),
       ),
     );
   }
-}
+}

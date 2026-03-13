@@ -18,5 +18,11 @@ class MateriError extends MateriState {
   MateriError(this.message);
 }
 
+class MateriDetailLoaded extends MateriState {
+  final MateriFeedModel materi;
+  MateriDetailLoaded(this.materi);
+}
+
 class MateriUploading extends MateriState {}
 class MateriUploadSuccess extends MateriState {}
+class MateriDeletedSuccess extends MateriState {}

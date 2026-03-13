@@ -17,7 +17,9 @@ class MateriService {
           cover_url,
           profiles!materi_author_id_fkey(
             username,
-            avatar_url
+            avatar_url,
+            jurusan,
+            universitas
           )
         ''')
         .order('created_at', ascending: false);
@@ -27,6 +29,38 @@ class MateriService {
         .toList();
   }
 
+
+  Future<MateriFeedModel> getMateriById(String id) async {
+    final response = await _client
+        .from('materi')
+        .select('''
+          id,
+          author_id,
+          judul,
+          kategori,
+          jurusan,
+          universitas,
+          cover_url,
+          jumlah_slide,
+          sumber_referensi,
+          xp_reward,
+          is_valid,
+          created_at,
+          updated_at,
+          all_images,
+          deskripsi,
+          profiles!materi_author_id_fkey(
+            username,
+            avatar_url,
+            jurusan,
+            universitas
+          )
+        ''')
+        .eq('id', id)
+        .single();
+
+    return MateriFeedModel.fromJson(response);
+  }
 
   Future<void> materiUpload({
     required String judul,
@@ -42,7 +76,7 @@ class MateriService {
           .from('profiles')
           .select('jurusan, universitas, username')
           .eq('id', user.id)
-          .single();
+          .maybeSingle();
 
       List<String> uploadedUrls = [];
       for (String path in imagePaths) {
@@ -61,8 +95,8 @@ class MateriService {
         'judul': judul,
         'deskripsi': deskripsi,
         'kategori': kategori,
-        'jurusan': profileData['jurusan'],
-        'universitas': profileData['universitas'],
+        'jurusan': profileData?['jurusan'],
+        'universitas': profileData?['universitas'],
         'cover_url': uploadedUrls.first,
         'all_images': uploadedUrls,
         'jumlah_slide': uploadedUrls.length,

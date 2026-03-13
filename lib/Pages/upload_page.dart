@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:langkara/Bloc/Materiku/materi_bloc.dart';
 import 'package:langkara/Pages/detail_upload_page.dart';
+import 'package:langkara/Pages/detail_upload_achievement_page.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class UploadPage extends StatefulWidget {
@@ -21,6 +22,8 @@ class _UploadPageState extends State<UploadPage> {
 
   List<AssetEntity> _galleryAssets = [];
   List<AssetEntity> _selectedAssets = [];
+
+  bool _isAchievementMode = false;
 
   final DraggableScrollableController _sheetController = DraggableScrollableController();
 
@@ -128,26 +131,46 @@ class _UploadPageState extends State<UploadPage> {
   }
 
   void _goToDetailSingle(String path) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => BlocProvider.value(
-          value: context.read<MateriBloc>(),
-          child: DetailUploadPage(imagePaths: [path]),
+    if (_isAchievementMode) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => DetailUploadAchievementPage(imagePath: path),
         ),
-      ),
-    );  }
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: context.read<MateriBloc>(),
+            child: DetailUploadPage(imagePaths: [path]),
+          ),
+        ),
+      );
+    }
+  }
 
   void _goToDetailMulti(List<String> paths) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => BlocProvider.value(
-          value: context.read<MateriBloc>(),
-          child: DetailUploadPage(imagePaths: paths),
+    if (_isAchievementMode) {
+      // Achievement only takes 1 image
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => DetailUploadAchievementPage(imagePath: paths.first),
         ),
-      ),
-    );
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: context.read<MateriBloc>(),
+            child: DetailUploadPage(imagePaths: paths),
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -201,10 +224,30 @@ class _UploadPageState extends State<UploadPage> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text("Materi", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF1A2A4F))),
-                        SizedBox(width: 30),
-                        Text("Pencapaian", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      children: [
+                        GestureDetector(
+                          onTap: () => setState(() => _isAchievementMode = false),
+                          child: Text(
+                            "Materi",
+                            style: TextStyle(
+                              fontWeight: !_isAchievementMode ? FontWeight.bold : FontWeight.normal,
+                              fontSize: 16,
+                              color: !_isAchievementMode ? const Color(0xFF1A2A4F) : Colors.grey,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 30),
+                        GestureDetector(
+                          onTap: () => setState(() => _isAchievementMode = true),
+                          child: Text(
+                            "Pencapaian",
+                            style: TextStyle(
+                              fontWeight: _isAchievementMode ? FontWeight.bold : FontWeight.normal,
+                              fontSize: 16,
+                              color: _isAchievementMode ? const Color(0xFF1A2A4F) : Colors.grey,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 25),

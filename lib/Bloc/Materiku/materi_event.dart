@@ -17,3 +17,10 @@ class UploadMateriRequested extends MateriEvent {
     required this.imagePaths,
   });
 }
+
+class DeleteMateriRequested extends MateriEvent{}
+
+class LoadMateriDetail extends MateriEvent {
+  final String id;
+  LoadMateriDetail(this.id);
+}
