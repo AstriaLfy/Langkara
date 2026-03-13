@@ -584,8 +584,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ReadingBloc(ReadingService())..add(LoadLastRead()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => ReadingBloc(ReadingService())..add(LoadLastRead()),),
+        BlocProvider(
+          create: (_) => TicketBloc(ProfileService())..add(LoadTicket()),
+        ),      ],
       child: const HomePageView(),
     );
   }
@@ -605,7 +609,6 @@ class _HomePageViewState extends State<HomePageView> {
     final user = Supabase.instance.client.auth.currentUser;
     print("Current User: $user");
     context.read<AuthBloc>().add(CekAuth());
-    context.read<TicketBloc>().add(LoadTicket());
   }
 
   @override
