@@ -68,11 +68,19 @@ on<RegisterSubmited>((event, emit) async {
 
     on<GoogleSignInRequest>((event, emit) async {
       emit(AuthLoading());
+
       try {
-        await repository.signInWithGoogle();
-        emit(LoginSuccess());
+        final response = await repository.signInWithGoogle();
+
+        final session = Supabase.instance.client.auth.currentSession;
+        final user = Supabase.instance.client.auth.currentUser;
+
+        if (session != null && user != null) {
+          emit(LoginSuccess());
+        } else {
+          emit(LoginFailure("Login gagal, session tidak ditemukan"));
+        }
       } catch (e) {
-        print(e.toString());
         emit(LoginFailure(e.toString()));
       }
     });
