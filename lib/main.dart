@@ -21,15 +21,17 @@ import 'package:langkara/Repository/auth_repository.dart';
 import 'package:langkara/repository/materi_repository.dart';
 import 'package:langkara/Services/auth_services.dart';
 import 'package:langkara/services/materi_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await initializeDateFormatting('id_ID', null);
+  await dotenv.load(fileName: ".env");
   await Supabase.initialize(
-    url: "https://exdtkmfhqtgewykwvgmc.supabase.co",
-    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4ZHRrbWZocXRnZXd5a3d2Z21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NDAzNTMsImV4cCI6MjA4NzMxNjM1M30.pMTAsc-bA0pgD8im63JSTwu50mAkOW9DH-eNzPklgmc",
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
   final prefs = await SharedPreferences.getInstance();

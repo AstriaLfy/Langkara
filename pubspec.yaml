@@ -46,7 +46,7 @@ dependencies:
   path_provider: ^2.1.0
   flutter_card_swiper: ^7.2.0
   url_launcher: ^6.3.2
-
+  flutter_dotenv: ^5.1.0
   intl: ^0.19.0
 
 dev_dependencies:
@@ -73,6 +73,7 @@ flutter:
 
   assets:
     - assets/
+    - .env
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
